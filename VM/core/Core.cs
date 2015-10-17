@@ -8,12 +8,13 @@ namespace VM
 {
     class Core
     {
-        private CommandsList commands;
-        private CodeParser parser;
+        private CommandExecuter executer;
+        private CodeList parser;
 
         public Core()
         {
-            commands = new CommandsList();
+            parser = CodeList.Instance;
+            executer = new CommandExecuter();
         }
         public void Execute(string[] s)
         {
@@ -23,28 +24,29 @@ namespace VM
 
         private void ParseString(string[] s)
         {
-            parser = new CodeParser();
+            parser.Init(s);
         }
 
         private void ExecuteCode()
         {
-            while (true)
+            try
             {
-                try
-                {
-                    MainCommandLoop();
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                MainCommandLoop();
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         private void MainCommandLoop()
         {
-
+            while (true)
+            {
+                executer.Call(parser.CurrentCommand, parser.CurrentCommandArg);
+                //Utils.PrintStack();
+            }
         }
     }
 }

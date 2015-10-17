@@ -11,10 +11,10 @@ namespace VM
         public static IValue Create(object val)
         {
             IValue value;
-            if (val.GetType() == typeof(double))
+            if ((val.GetType() == typeof(double)) || (val.GetType() == typeof(int)))
             {
                 value = new NumberValue();
-                value.SetValue(val);
+                value.SetValue(Convert.ToDouble(val));
             }
             else if (val.GetType() == typeof(string))
             {

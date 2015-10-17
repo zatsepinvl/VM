@@ -1,1 +1,5 @@
-﻿
+﻿1 PushVar 1
+4 Print 0
+2 PushVar 2
+3 Add 0
+4 Print 0

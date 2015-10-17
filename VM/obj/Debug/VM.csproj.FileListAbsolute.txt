@@ -1,2 +1,6 @@
 D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VM\bin\Debug\VM.exe.config
 D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VM\obj\Debug\VM.csprojResolveAssemblyReference.cache
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VM\bin\Debug\VM.exe
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VM\bin\Debug\VM.pdb
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VM\obj\Debug\VM.exe
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VM\obj\Debug\VM.pdb

@@ -20,10 +20,17 @@ namespace VM
             return stack.Pop();
         }
 
+        public static IValue Peek()
+        {
+            return stack.Peek();
+        }
+
         public static IValue[] GetCurrentStackState()
         {
             return stack.ToArray();
         }
+
+      
 
     }
 }
