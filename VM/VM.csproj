@@ -43,22 +43,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="comd\Command.cs" />
-    <Compile Include="comd\CommandExecuter.cs" />
-    <Compile Include="comd\CommandList.cs" />
-    <Compile Include="core\CodeList.cs" />
+    <Compile Include="core\code\CodeList.cs" />
+    <Compile Include="core\Command.cs" />
+    <Compile Include="core\code\CodeManager.cs" />
+    <Compile Include="core\code\CodeExecuter.cs" />
+    <Compile Include="core\code\Code.cs" />
+    <Compile Include="core\Constants.cs" />
+    <Compile Include="core\module\Module.cs" />
+    <Compile Include="core\module\ModuleFactory.cs" />
+    <Compile Include="core\module\ModuleStructure.cs" />
+    <Compile Include="core\parser\Parser.cs" />
+    <Compile Include="context\Context.cs" />
     <Compile Include="core\Core.cs" />
+    <Compile Include="context\ContextStack.cs" />
+    <Compile Include="context\VariableMap.cs" />
     <Compile Include="pattern\Singleton.cs" />
+    <Compile Include="val\values\BoolValues.cs" />
+    <Compile Include="val\ConstantDataType.cs" />
+    <Compile Include="val\ConstantValueFactory.cs" />
     <Compile Include="val\DataType.cs" />
-    <Compile Include="val\NumberValue.cs" />
-    <Compile Include="val\IRuntimeContextInstance.cs" />
+    <Compile Include="val\values\NumberValue.cs" />
+    <Compile Include="val\interfaces\IRuntimeContextInstance.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="val\IValue.cs" />
+    <Compile Include="val\interfaces\IValue.cs" />
     <Compile Include="core\StackVM.cs" />
-    <Compile Include="val\ObjectValue.cs" />
-    <Compile Include="val\StringValue.cs" />
+    <Compile Include="val\values\ObjectValue.cs" />
+    <Compile Include="val\values\StringValue.cs" />
     <Compile Include="val\ValueFactory.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +79,7 @@
   <ItemGroup>
     <Content Include="input.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

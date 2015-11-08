@@ -8,45 +8,29 @@ namespace VM
 {
     class Core
     {
-        private CommandExecuter executer;
-        private CodeList parser;
+        private CodeManager codeManager;
 
         public Core()
         {
-            parser = CodeList.Instance;
-            executer = new CommandExecuter();
+            codeManager = new CodeManager();
         }
-        public void Execute(string[] s)
+        public void Execute(string s)
         {
-            ParseString(s);
+            codeManager.SetModule(ModuleFactory.Create(s));
             ExecuteCode();
-        }
-
-        private void ParseString(string[] s)
-        {
-            parser.Init(s);
         }
 
         private void ExecuteCode()
         {
             try
             {
-                MainCommandLoop();
+                codeManager.ExecuteCode();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-        }
-
-        private void MainCommandLoop()
-        {
-            while (true)
-            {
-                executer.Call(parser.CurrentCommand, parser.CurrentCommandArg);
-                //Utils.PrintStack();
-            }
         }
     }
 }

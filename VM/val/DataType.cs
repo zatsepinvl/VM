@@ -11,6 +11,8 @@ namespace VM
         Number,
         Bool,
         String,
-        Object
+        Object,
+        Undefind,
+        NaN
     }
 }

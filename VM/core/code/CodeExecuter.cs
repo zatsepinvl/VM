@@ -6,20 +6,27 @@ using System.Threading.Tasks;
 
 namespace VM
 {
-    class CommandList
+    class CodeExecuter
     {
-        public const string ADD = "Add";
-        public const string DIV = "Div";
-        public const string PUSH_VAR = "PushVar";
-        public const string LOAD_VAR = "LoadVar";
-        public const string PRINT = "Print";
-        public const int CommandCount = 2;
+        public Module Module { get; set;}
 
         public void PushVar(int arg)
         {
             StackVM.Push(ValueFactory.Create(arg));
             GoNext();
         }
+
+        public void PushConst(int arg)
+        {
+            StackVM.Push(Module.Constants.GetConstant(arg));
+            GoNext();
+        }
+        
+        public void Return(int arg)
+        {
+            GoNext();
+        }
+
         public void Add(int arg)
         {
             IValue v1 = StackVM.Pop();
@@ -27,7 +34,7 @@ namespace VM
 
             if (v1.DataType == DataType.String)
             {
-                StackVM.Push(ValueFactory.Create(v1.AsString() + v2.AsString()));
+                StackVM.Push(ValueFactory.Create(v2.AsString() + v1.AsString()));
             }
             else
             {
@@ -35,13 +42,31 @@ namespace VM
             }
             GoNext();
         }
-        public void Div(int arg)
+
+        public void Dif(int arg)
         {
             IValue v1 = StackVM.Pop();
             IValue v2 = StackVM.Pop();
             StackVM.Push(ValueFactory.Create(v1.AsNumber() - v2.AsNumber()));
             GoNext();
         }
+
+        public void Mult(int arg)
+        {
+            IValue v1 = StackVM.Pop();
+            IValue v2 = StackVM.Pop();
+            StackVM.Push(ValueFactory.Create(v1.AsNumber() * v2.AsNumber()));
+            GoNext();
+        }
+
+        public void Div(int arg)
+        {
+            IValue v1 = StackVM.Pop();
+            IValue v2 = StackVM.Pop();
+            StackVM.Push(ValueFactory.Create(v1.AsNumber() / v2.AsNumber()));
+            GoNext();
+        }
+
         public void Print(int arg)
         {
             Console.WriteLine(StackVM.Peek().AsString());
@@ -50,11 +75,12 @@ namespace VM
 
         private void Go(int pointer)
         {
-            CodeList.Instance.Pointer = pointer;
+            Module.Code.Pointer = pointer;
         }
+
         private void GoNext()
         {
-            CodeList.Instance.Pointer++;
+            Module.Code.Pointer++;
         }
     }
 }

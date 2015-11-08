@@ -12,7 +12,7 @@ namespace VM
         public int Arg;
     }
 
-    class CodeList : Singleton<CodeList>
+    class Code
     {
         public const string END_OF_CODE = "Executed.";
         protected List<CodeCommand> code = new List<CodeCommand>();
@@ -41,25 +41,14 @@ namespace VM
             }
         }
 
-        protected CodeList() { }
         public void Init(string[] strs)
         {
             code = new List<CodeCommand>();
-            Parse(strs);
         }
 
-        private void Parse(string[] strs)
+        public void AddCommand(CodeCommand command)
         {
-            char[] separators = new char[] { ' ' };
-            foreach (string s in strs)
-            {
-                string[] x = s.Split(separators);
-                code.Add(new CodeCommand() { Name = x[1], Arg = Int32.Parse(x[2]) });
-            }
-            if (code.Count > 0)
-            {
-                Pointer = 0;
-            }
+            code.Add(command);
         }
     }
 }

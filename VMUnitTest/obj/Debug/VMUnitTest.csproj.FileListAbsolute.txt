@@ -1,0 +1,9 @@
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VMUnitTest\bin\Debug\VMUnitTest.dll
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VMUnitTest\bin\Debug\VMUnitTest.pdb
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VMUnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VMUnitTest\bin\Debug\VM.exe
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VMUnitTest\bin\Debug\VM.pdb
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VMUnitTest\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VMUnitTest\obj\Debug\VMUnitTest.csprojResolveAssemblyReference.cache
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VMUnitTest\obj\Debug\VMUnitTest.dll
+D:\Education\3 course\Vladimir\Практика\Теор. компилятор\VM\VMUnitTest\obj\Debug\VMUnitTest.pdb
