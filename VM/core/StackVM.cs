@@ -8,29 +8,36 @@ namespace VM
 {
     static class StackVM
     {
-        private static Stack<IValue> stack = new Stack<IValue>();
+        private static Stack<Variable> stack = new Stack<Variable>();
 
-        public static void Push(IValue arg)
+        public static void Push(Variable arg)
         {
             stack.Push(arg);
         }
 
-        public static IValue Pop()
+        public static Variable Pop()
         {
-            return stack.Pop();
+            if (stack.Count > 0)
+            {
+                return stack.Pop();
+            }
+            else
+            {
+                throw new MemoryException("stack is empty");
+            }
         }
 
-        public static IValue Peek()
+        public static Variable Peek()
         {
             return stack.Peek();
         }
 
-        public static IValue[] GetCurrentStackState()
+        public static Variable[] GetCurrentStackState()
         {
             return stack.ToArray();
         }
 
-      
+
 
     }
 }

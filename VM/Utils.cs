@@ -11,9 +11,9 @@ namespace VM
         public static void PrintStack()
         {
             Console.WriteLine("Stack:");
-            foreach(IValue i in StackVM.GetCurrentStackState())
+            foreach(Variable i in StackVM.GetCurrentStackState())
             {
-                Console.WriteLine("| " + i.AsString() + " |");
+                Console.WriteLine("| " + i.ToString() + " |");
             }
             Console.WriteLine("--------");
         }

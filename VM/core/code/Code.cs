@@ -9,16 +9,17 @@ namespace VM
     struct CodeCommand
     {
         public string Name;
-        public int Arg;
+        public object Arg;
     }
 
     class Code
     {
+        public event Action OnExecuted;
         public const string END_OF_CODE = "Executed.";
         protected List<CodeCommand> code = new List<CodeCommand>();
 
         public string CurrentCommand { get; protected set; }
-        public int CurrentCommandArg { get; protected set; }
+        public object CurrentCommandArg { get; protected set; }
 
         protected int pointer;
 
@@ -36,7 +37,7 @@ namespace VM
                 }
                 else
                 {
-                    throw new Exception(END_OF_CODE);
+                    throw new CodeException("invalid code number:" + pointer.ToString());
                 }
             }
         }

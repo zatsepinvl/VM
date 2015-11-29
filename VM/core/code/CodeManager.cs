@@ -6,46 +6,71 @@ using System.Threading.Tasks;
 
 namespace VM
 {
-    class CodeManager
+    class CodeManager : CodeExecuter
     {
-        private Dictionary<string, Action<int>> commands = new Dictionary<string, Action<int>>();
-        private CodeExecuter codeExecuter = new CodeExecuter();
-        private Module module;
-
-        public CodeManager()
+        private Dictionary<string, Action<object>> commands = new Dictionary<string, Action<object>>();
+        private bool working;
+        public CodeManager(Module module, Memory memory) : base(module, memory)
         {
             Init();
+            module.Code.OnExecuted += CodeOnExecuted;
         }
 
+        private void CodeOnExecuted()
+        {
+            working = false;
+        }
 
         private void Init()
         {
-            commands.Add(CodeList.PUSH_VAR, codeExecuter.PushVar);
-            commands.Add(CodeList.PUSH_CONST, codeExecuter.PushConst);
-            commands.Add(CodeList.RETURN, codeExecuter.Return);
-            commands.Add(CodeList.PRINT, codeExecuter.Print);
-            commands.Add(CodeList.ADD, codeExecuter.Add);
-            commands.Add(CodeList.DIV, codeExecuter.Div);
-        }
+            commands.Add(CodeList.INIT, Init);
+            commands.Add(CodeList.PUSH, Push);
+            commands.Add(CodeList.PUSH_FUNC, PushFunc);
+            commands.Add(CodeList.CALL, Call);
+            commands.Add(CodeList.LOAD, Load);
+            commands.Add(CodeList.JMP, Jmp);
+            commands.Add(CodeList.RETURN, Return);
+            commands.Add(CodeList.PRINT, Print);
+            commands.Add(CodeList.PUSH_ARG_COUNT, PushArgCount);
 
-        public void SetModule(Module module)
-        {
-            this.module = module;
-            codeExecuter.Module = module;
+            //Math
+            commands.Add(CodeList.ADD, Add);
+            commands.Add(CodeList.DIV, Div);
+            commands.Add(CodeList.SUBT, Subt);
+            commands.Add(CodeList.MULT, Mult);
+
+            //Boolean
+            commands.Add(CodeList.GREATER, Greater);
+            commands.Add(CodeList.GREATER_EQ, GreaterEq);
+            commands.Add(CodeList.LESS, Less);
+            commands.Add(CodeList.LESS_EQ, LessEq);
+            commands.Add(CodeList.JMP_TRUE, JmpTrue);
+            commands.Add(CodeList.JMP_FALSE, JmpFalse);
+
         }
 
         public void ExecuteCode()
         {
-            module.Code.Pointer = module.EntryPoint;
-            while(true)
+            working = true;
+            while (working)
             {
-                Execute(module.Code.CurrentCommand, module.Code.CurrentCommandArg);
+                Execute(Module.Code.CurrentCommand, Module.Code.CurrentCommandArg);
+                
             }
         }
 
-        private void Execute(string commandName, int arg)
+        private void Execute(string commandName, object arg)
         {
-            commands[commandName](arg);
+            if (commands.ContainsKey(commandName))
+            {
+                //Console.WriteLine(commandName);
+                commands[commandName](arg);
+            }
+            else
+            {
+                throw new CodeException((Module.Code.Pointer + 1).ToString() + ": unknown command " + commandName);
+            }
+
         }
 
     }

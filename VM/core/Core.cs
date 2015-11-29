@@ -6,31 +6,32 @@ using System.Threading.Tasks;
 
 namespace VM
 {
-    class Core
+    public class Core
     {
-        private CodeManager codeManager;
+        private ModuleManager moduleManager;
 
-        public Core()
-        {
-            codeManager = new CodeManager();
-        }
         public void Execute(string s)
         {
-            codeManager.SetModule(ModuleFactory.Create(s));
-            ExecuteCode();
+            try
+            {
+                moduleManager = new ModuleManager(ModuleFactory.Create(s));
+                moduleManager.OnCodeExecuted += ModuleManagerOnCodeExecuted;
+                ExecuteCode();
+            }
+            catch (VMException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void ModuleManagerOnCodeExecuted()
+        {
+            Console.WriteLine("Executed");
         }
 
         private void ExecuteCode()
         {
-            try
-            {
-                codeManager.ExecuteCode();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
+            moduleManager.ExecuteCode();
         }
     }
 }

@@ -49,32 +49,38 @@
     <Compile Include="core\code\CodeExecuter.cs" />
     <Compile Include="core\code\Code.cs" />
     <Compile Include="core\Constants.cs" />
+    <Compile Include="core\frame\Frame.cs" />
+    <Compile Include="core\frame\Frames.cs" />
+    <Compile Include="core\frame\FrameStack.cs" />
+    <Compile Include="core\memory\Memory.cs" />
+    <Compile Include="core\memory\VariableMap.cs" />
     <Compile Include="core\module\Module.cs" />
     <Compile Include="core\module\ModuleFactory.cs" />
+    <Compile Include="core\module\ModuleManager.cs" />
     <Compile Include="core\module\ModuleStructure.cs" />
     <Compile Include="core\parser\Parser.cs" />
     <Compile Include="context\Context.cs" />
     <Compile Include="core\Core.cs" />
     <Compile Include="context\ContextStack.cs" />
-    <Compile Include="context\VariableMap.cs" />
+    <Compile Include="exception\CodeException.cs" />
+    <Compile Include="exception\MemoryException.cs" />
+    <Compile Include="exception\ModuleException.cs" />
+    <Compile Include="exception\ParserException.cs" />
+    <Compile Include="exception\VMException.cs" />
     <Compile Include="pattern\Singleton.cs" />
-    <Compile Include="val\values\BoolValues.cs" />
-    <Compile Include="val\ConstantDataType.cs" />
-    <Compile Include="val\ConstantValueFactory.cs" />
-    <Compile Include="val\DataType.cs" />
-    <Compile Include="val\values\NumberValue.cs" />
-    <Compile Include="val\interfaces\IRuntimeContextInstance.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="val\interfaces\IValue.cs" />
     <Compile Include="core\StackVM.cs" />
-    <Compile Include="val\values\ObjectValue.cs" />
-    <Compile Include="val\values\StringValue.cs" />
-    <Compile Include="val\ValueFactory.cs" />
+    <Compile Include="var\Variable.cs" />
+    <Compile Include="var\Function.cs" />
+    <Compile Include="var\NaN.cs" />
+    <Compile Include="var\ObjectVariable.cs" />
+    <Compile Include="var\Undefined.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="input.txt" />

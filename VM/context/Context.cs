@@ -10,15 +10,15 @@ namespace VM
     {
         public int id;
         private Context parent;
-        private List<IValue> variables = new List<IValue>();
+        private List<Variable> variables = new List<Variable>();
         private List<Context> innerContexts = new List<Context>();
 
-        public IValue getVariable(int id)
+        public Variable getVariable(int id)
         {
             return variables[id];
         }
 
-        public int setVariable(IValue variable)
+        public int setVariable(Variable variable)
         {
             variables.Add(variable);
             return variables.Count - 1;

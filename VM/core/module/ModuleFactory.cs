@@ -9,9 +9,14 @@ namespace VM
         {
             Module module = new Module();
             Parser parser = new Parser(source);
-            module.Constants = parser.Constants;
             module.Code = parser.Code;
-            module.EntryPoint = parser.EntryPoint;
+            module.InitialFrame = new Frame()
+            {
+                Id = 0,
+                ArgsCount = 0,
+                EntryPoint = 0,
+                Parent = null
+            };
             return module;
         }
     }

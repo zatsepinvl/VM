@@ -8,8 +8,6 @@ namespace VM
 {
     class ModuleStructure
     {
-        public const string CONSTANTS = ".constant";
-        public const string VARIABLE = ".variable";
         public const string CODE = ".code";
         public const string FUNCTION = ".function";
         public const string ENTRYPOINT = ".entrypoint";

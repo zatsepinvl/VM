@@ -15,6 +15,7 @@ namespace VM
             FileStream file = new FileStream(args[0], FileMode.Open);
             StreamReader reader = new StreamReader(file);        
             core.Execute(reader.ReadToEnd());
+            Utils.PrintStack();
             Console.ReadKey();
         }
     }

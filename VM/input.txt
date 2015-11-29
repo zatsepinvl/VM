@@ -1,5 +1,6 @@
-﻿.code
-1: PushConst 1
-6: Return 0
-.entrypoint
-0
+﻿Push undefined
+Push undefined
+LessEq 0
+Load a
+Print a
+Return 0  

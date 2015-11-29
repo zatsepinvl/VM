@@ -8,14 +8,14 @@ namespace VM
 {
     class Constants
     {
-        private Dictionary<int, IValue> constants = new Dictionary<int, IValue>();
+        private Dictionary<int, Variable> constants = new Dictionary<int, Variable>();
 
-        public IValue GetConstant(int id)
+        public Variable GetConstant(int id)
         {
             return constants[id];
         }
 
-        public void AddConstant(int id, IValue value)
+        public void AddConstant(int id, Variable value)
         {
             if (constants.ContainsKey(id))
             {

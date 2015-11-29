@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
 namespace VM
 {
     class Parser
     {
+        public const string DEFAULT_WHITESPACES = " \n\r\t";
         public Code Code { get; private set; }
-        public Constants Constants { get; private set; }
         public int EntryPoint { get; private set; }
 
         private int pointer;
@@ -19,83 +14,25 @@ namespace VM
         string[] tokens;
         public Parser(string source)
         {
-            this.source = source;
-            Code = new Code();
-            Constants = new Constants();
             EntryPoint = 0;
-            Init();
-        }
-
-        private void Init()
-        {
             Code = new Code();
-            Constants = new Constants();
+            this.source = source;
             pointer = 0;
-            tokens = source.Split(new char[] { ' ', ':', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            while (pointer < tokens.Length)
-            {
-
-                switch (tokens[pointer])
-                {
-                    case ModuleStructure.CONSTANTS:
-                        pointer++;
-                        ParseConstants();
-                        break;
-                    case ModuleStructure.CODE:
-                        pointer++;
-                        ParseCode();
-                        break;
-                    case ModuleStructure.ENTRYPOINT:
-                        pointer++;
-                        ParseEntryPoint();
-                        break;
-
-                }
-            }
-        }
-
-        private void ParseConstants()
-        {
             try
             {
-                while (true)
+                foreach (Match match in Regex.Matches(source, @"[A-Z,a-z]+\s+((\d+)|([A-Z,a-z]+)|(\"".+\""))"))
                 {
-                    int id = Int32.Parse(tokens[pointer]);
-                    pointer++;
-                    string type = tokens[pointer];
-                    pointer++;
-                    string value = tokens[pointer];
-                    pointer++;
-                    while ((type == ConstantDataType.str) && (value[value.Length - 1] != '"'))
-                    {
-                        value += tokens[pointer];
-                        pointer++;
-                    }
-                    Constants.AddConstant(id, ConstantValueFactory.Create(type, value));
-                }
-            }
-            catch { }
-        }
-
-        private void ParseCode()
-        {
-            try
-            {
-                while (true)
-                {
-                    int id = Int32.Parse(tokens[pointer]);
-                    pointer++;
-                    string name = tokens[pointer];
-                    pointer++;
-                    int arg = Int32.Parse(tokens[pointer]);
-                    pointer++;
+                    MatchCollection temp = Regex.Matches(match.Value, @"([A-Z,a-z]+)|((\d+)|([A-Z,a-z]+)|(\"".+\""))");
                     CodeCommand command;
-                    command.Name = name;
-                    command.Arg = arg;
+                    command.Name = temp[0].Value;
+                    command.Arg = temp[1].Value;
                     Code.AddCommand(command);
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                throw new ParserException("invalid input");
+            }
         }
 
         private void ParseEntryPoint()

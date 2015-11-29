@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace VM
 {
     /// <summary>
@@ -12,10 +7,14 @@ namespace VM
     class CodeList
     {
         //General
-        public const string PUSH_CONST = "PushConst";
-        public const string PUSH_VAR = "PushVar";
-        public const string LOAD_VAR = "LoadVar";
+        public const string INIT = "Init";
+        public const string PUSH = "Push";
+        public const string LOAD = "Load";
+        public const string PUSH_FUNC = "PushFunc";
+        public const string CALL = "Call";
         public const string RETURN = "Return";
+        public const string JMP = "Jmp";
+        public const string PUSH_ARG_COUNT = "PushArgCount";
 
         //System
         public const string PRINT = "Print";
@@ -25,6 +24,17 @@ namespace VM
         public const string SUBT = "Subt";
         public const string MULT = "Mult";
         public const string DIV = "Div";
-  
+
+        //Boolean
+        public const string GREATER = "Greater";
+        public const string GREATER_EQ = "GreaterEq";
+        public const string LESS = "Less";
+        public const string LESS_EQ = "LessEq";
+        public const string EQUAL = "Equal";
+        public const string NOT_EQUAL = "NotEqual";
+        public const string STRICT_EQUAL = "StrictEqual";
+        public const string NOT_STRICT_EQUAL = "NotStrictEqual";
+        public const string JMP_FALSE= "JmpFalse";
+        public const string JMP_TRUE = "JmpTrue";
     }
 }
